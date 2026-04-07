@@ -2,6 +2,7 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
+import nextra from "nextra";
 import "./src/env.js";
 
 function getInternalServiceURL(envKey, fallbackURL) {
@@ -10,7 +11,6 @@ function getInternalServiceURL(envKey, fallbackURL) {
     ? configured.replace(/\/+$/, "")
     : fallbackURL;
 }
-import nextra from "nextra";
 
 const withNextra = nextra({});
 
@@ -20,6 +20,7 @@ const config = {
     locales: ["en", "zh"],
     defaultLocale: "en",
   },
+  output: "standalone",
   devIndicators: false,
   async rewrites() {
     const rewrites = [];

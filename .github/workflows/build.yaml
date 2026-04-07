@@ -35,15 +35,15 @@ jobs:
         # run: BETTER_AUTH_SECRET="$(python3 -c 'import secrets; print(secrets.token_hex(32))')"
         run: echo "BETTER_AUTH_SECRET=$(python3 -c 'import secrets; print(secrets.token_hex(32))')" >> $GITHUB_ENV
           
-      - name: 构建并推送后端镜像
-        run: |
-          BACKENDIMAGE=docker.cnb.cool/xu756/xm/deer-flow-backend:${{ env.PACKAGE_VERSION }}
-          docker buildx build --cache-from=type=gha --cache-to=type=gha,mode=max . -f backend/Dockerfile-backend -t $BACKENDIMAGE --push
+      # - name: 构建并推送后端镜像
+      #   run: |
+      #     BACKENDIMAGE=docker.cnb.cool/xu756/xm/deer-flow-backend:${{ env.PACKAGE_VERSION }}
+      #     docker buildx build --cache-from=type=gha --cache-to=type=gha,mode=max . -f backend/Dockerfile-backend -t $BACKENDIMAGE --push
 
-      - name: 构建并推送langgraph镜像
-        run: |
-          LANGGRAPHIMAGE=docker.cnb.cool/xu756/xm/deer-flow-langgraph:${{ env.PACKAGE_VERSION }}
-          docker buildx build --cache-from=type=gha --cache-to=type=gha,mode=max . -f backend/Dockerfile-langgraph -t $LANGGRAPHIMAGE --push
+      # - name: 构建并推送langgraph镜像
+      #   run: |
+      #     LANGGRAPHIMAGE=docker.cnb.cool/xu756/xm/deer-flow-langgraph:${{ env.PACKAGE_VERSION }}
+      #     docker buildx build --cache-from=type=gha --cache-to=type=gha,mode=max . -f backend/Dockerfile-langgraph -t $LANGGRAPHIMAGE --push
 
 
       # 使用npm安装依赖
