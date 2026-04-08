@@ -24,8 +24,7 @@ COPY backend ./backend
 
 # Then sync project dependencies from pyproject.toml / uv.lock
 RUN --mount=type=cache,target=/root/.cache/uv \
-    sh -c 'cd /app/backend && uv sync'
-
+    sh -c 'cd /app/backend && uv sync && uv add langgraph-checkpoint-postgres psycopg[binary] psycopg-pool'
 # Expose ports (gateway: 8001, langgraph: 2024)
 EXPOSE 8001 2024
 
